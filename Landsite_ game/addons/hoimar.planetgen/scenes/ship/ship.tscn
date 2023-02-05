@@ -1,0 +1,72 @@
+[gd_scene load_steps=10 format=2]
+
+[ext_resource path="res://addons/hoimar.planetgen/scripts/ship/ship.gd" type="Script" id=1]
+[ext_resource path="res://wingsuit_lowpoly.glb" type="PackedScene" id=2]
+[ext_resource path="res://addons/hoimar.planetgen/scenes/utils/origin_shifter.tscn" type="PackedScene" id=3]
+[ext_resource path="res://jet-pack._incomplete.glb" type="PackedScene" id=4]
+[ext_resource path="res://Parachute.obj" type="ArrayMesh" id=5]
+[ext_resource path="res://addons/hoimar.planetgen/resources/materials/rakety/sk.tres" type="QuadMesh" id=6]
+[ext_resource path="res://Fonty/Roboto-Bold.ttf" type="DynamicFontData" id=7]
+[ext_resource path="res://addons/hoimar.planetgen/resources/thruster_particles.tres" type="Material" id=8]
+
+[sub_resource type="DynamicFont" id=2]
+font_data = ExtResource( 7 )
+
+[node name="Skydiver" type="KinematicBody"]
+transform = Transform( 1, 0, 0, 0, 0.989669, -0.143372, 0, 0.143372, 0.989669, 0, 0, 8.24881 )
+script = ExtResource( 1 )
+
+[node name="Popisoook" type="Label3D" parent="."]
+transform = Transform( 1, 0, 0, 0, 0.984807, 0.173648, 0, -0.173648, 0.984807, 0, -0.22773, -0.0477228 )
+pixel_size = 0.0081
+offset = Vector2( 0.005, 0.01 )
+alpha_scissor_threshold = 0.38
+font = SubResource( 2 )
+
+[node name="Otacanie_kamery" type="Spatial" parent="."]
+transform = Transform( 1, 0, 0, 0, 0.984808, 0.173648, 0, -0.173648, 0.984808, 0, 0, 0 )
+
+[node name="Kamera_postavy" type="Camera" parent="Otacanie_kamery"]
+transform = Transform( 1, 0, 0, 0, 1, 1.04308e-07, 0, -8.9407e-08, 1, 0, 0.0417461, 0.553909 )
+current = true
+near = 0.1
+far = 15000.0
+
+[node name="Tween" type="Tween" parent="Otacanie_kamery"]
+
+[node name="SK_erb_partikle_left" type="Particles" parent="."]
+transform = Transform( 0.988584, 0, 0.150674, 0.0273339, 0.983406, -0.17934, -0.148174, 0.181411, 0.972179, -0.0999213, -0.158234, -0.503294 )
+amount = 100
+lifetime = 0.05
+fixed_fps = 60
+visibility_aabb = AABB( -0.03, -0.03, -0.03, 0.06, 0.038, 0.109 )
+process_material = ExtResource( 8 )
+draw_pass_1 = ExtResource( 6 )
+
+[node name="SK_erb_partikle_right" type="Particles" parent="."]
+transform = Transform( 0.997142, 0, 0.0755531, 0.0133248, 0.984324, -0.175859, -0.0743688, 0.176363, 0.981511, 0.0230449, -0.158926, -0.501996 )
+amount = 100
+lifetime = 0.05
+fixed_fps = 60
+visibility_aabb = AABB( -0.03, -0.044103, -0.03, 0.06, 0.066206, 0.109 )
+process_material = ExtResource( 8 )
+draw_pass_1 = ExtResource( 6 )
+
+[node name="OriginShifter" parent="." instance=ExtResource( 3 )]
+
+[node name="Lampasik" type="SpotLight" parent="."]
+light_energy = 2.175
+light_indirect_energy = 3.806
+spot_range = 123.279
+
+[node name="jet-pack_incomplete" parent="." instance=ExtResource( 4 )]
+transform = Transform( 0.0997537, -0.00469247, 0.00521393, -0.00271152, 0.0427565, 0.0903575, -0.00646929, -0.0902764, 0.0425239, -0.040416, -0.16371, -0.477544 )
+
+[node name="Parachute" type="MeshInstance" parent="."]
+transform = Transform( -0.0997473, 0.00474649, -0.00528659, 0.00166093, 0.0879262, 0.0476048, 0.00690785, 0.0473967, -0.0877828, -0.0478066, -0.15297, -0.688179 )
+visible = false
+mesh = ExtResource( 5 )
+skeleton = NodePath("../wingsuit_lowpoly")
+
+[node name="wingsuit_lowpoly" parent="." instance=ExtResource( 2 )]
+transform = Transform( -0.000997473, 4.74649e-05, -5.28659e-05, 1.66094e-05, 0.000879262, 0.000476048, 6.90785e-05, 0.000473967, -0.000877828, -0.0365434, -0.213492, -0.626481 )

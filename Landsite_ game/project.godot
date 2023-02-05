@@ -1,0 +1,260 @@
+; Engine configuration file.
+; It's best edited using the editor UI and not directly,
+; since the parameters that go here are not all obvious.
+;
+; Format:
+;   [section] ; section goes between []
+;   param=value ; assign values to parameters
+
+config_version=4
+
+_global_script_classes=[ {
+"base": "Reference",
+"class": "CubeQuadTree",
+"language": "GDScript",
+"path": "res://addons/hoimar.planetgen/scripts/quadtree/cube_quadtree.gd"
+}, {
+"base": "Reference",
+"class": "JobQueue",
+"language": "GDScript",
+"path": "res://addons/hoimar.planetgen/scripts/terrain/job_queue.gd"
+}, {
+"base": "Reference",
+"class": "Logger",
+"language": "GDScript",
+"path": "res://addons/hoimar.planetgen/scripts/utils/logger.gd"
+}, {
+"base": "Reference",
+"class": "MinMax",
+"language": "GDScript",
+"path": "res://addons/hoimar.planetgen/scripts/terrain/min_max.gd"
+}, {
+"base": "Resource",
+"class": "NoiseGenerator",
+"language": "GDScript",
+"path": "res://addons/hoimar.planetgen/scripts/terrain/noise_generator.gd"
+}, {
+"base": "Reference",
+"class": "PatchData",
+"language": "GDScript",
+"path": "res://addons/hoimar.planetgen/scripts/terrain/patch_data.gd"
+}, {
+"base": "Spatial",
+"class": "Planet",
+"language": "GDScript",
+"path": "res://addons/hoimar.planetgen/scripts/celestial_bodies/planet.gd"
+}, {
+"base": "Resource",
+"class": "PlanetSettings",
+"language": "GDScript",
+"path": "res://addons/hoimar.planetgen/scripts/celestial_bodies/planet_settings.gd"
+}, {
+"base": "Reference",
+"class": "QuadNode",
+"language": "GDScript",
+"path": "res://addons/hoimar.planetgen/scripts/quadtree/quadnode.gd"
+}, {
+"base": "NoiseGenerator",
+"class": "RidgedNoiseGenerator",
+"language": "GDScript",
+"path": "res://addons/hoimar.planetgen/scripts/terrain/ridged_noise_generator.gd"
+}, {
+"base": "Resource",
+"class": "ShapeGenerator",
+"language": "GDScript",
+"path": "res://addons/hoimar.planetgen/scripts/terrain/shape_generator.gd"
+}, {
+"base": "Spatial",
+"class": "SolarSystem",
+"language": "GDScript",
+"path": "res://addons/hoimar.planetgen/scripts/celestial_bodies/solar_system.gd"
+}, {
+"base": "Planet",
+"class": "Sun",
+"language": "GDScript",
+"path": "res://addons/hoimar.planetgen/scripts/celestial_bodies/sun.gd"
+}, {
+"base": "Reference",
+"class": "TerrainJob",
+"language": "GDScript",
+"path": "res://addons/hoimar.planetgen/scripts/terrain/terrain_job.gd"
+}, {
+"base": "Spatial",
+"class": "TerrainManager",
+"language": "GDScript",
+"path": "res://addons/hoimar.planetgen/scripts/terrain/terrain_manager.gd"
+}, {
+"base": "MeshInstance",
+"class": "TerrainPatch",
+"language": "GDScript",
+"path": "res://addons/hoimar.planetgen/scripts/terrain/terrain_patch.gd"
+}, {
+"base": "Thread",
+"class": "WorkerThread",
+"language": "GDScript",
+"path": "res://addons/hoimar.planetgen/scripts/terrain/worker_thread.gd"
+} ]
+_global_script_class_icons={
+"CubeQuadTree": "",
+"JobQueue": "",
+"Logger": "",
+"MinMax": "",
+"NoiseGenerator": "",
+"PatchData": "",
+"Planet": "res://addons/hoimar.planetgen/resources/icons/planet.svg",
+"PlanetSettings": "",
+"QuadNode": "",
+"RidgedNoiseGenerator": "",
+"ShapeGenerator": "",
+"SolarSystem": "res://addons/hoimar.planetgen/resources/icons/solar_system.svg",
+"Sun": "res://addons/hoimar.planetgen/resources/icons/sun.svg",
+"TerrainJob": "",
+"TerrainManager": "",
+"TerrainPatch": "",
+"WorkerThread": ""
+}
+
+[application]
+
+config/name="LandSite by Pavol Lukačka"
+run/main_scene="res://Menu/StartMenu.tscn"
+config/icon="res://Grafika_menu/LandSiteLogo.png"
+
+[audio]
+
+default_bus_layout="res://Audio_nastavenia_buses.tres"
+
+[autoload]
+
+PGGlobals="*res://addons/hoimar.planetgen/scripts/utils/pg_globals.gd"
+Save="*res://save/save.gd"
+Music="*res://music/music.tscn"
+GlobalSettings="*res://global_settings.gd"
+PauseMenu="*res://Menu/PauseMenu.tscn"
+
+[display]
+
+window/size/width=1920
+window/size/height=1080
+
+[editor_plugins]
+
+enabled=PoolStringArray(  )
+
+[input]
+
+ui_left={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":16777231,"physical_scancode":0,"unicode":0,"echo":false,"script":null)
+, Object(InputEventJoypadButton,"resource_local_to_scene":false,"resource_name":"","device":0,"button_index":14,"pressure":0.0,"pressed":false,"script":null)
+, Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":65,"physical_scancode":0,"unicode":0,"echo":false,"script":null)
+ ]
+}
+ui_right={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":16777233,"physical_scancode":0,"unicode":0,"echo":false,"script":null)
+, Object(InputEventJoypadButton,"resource_local_to_scene":false,"resource_name":"","device":0,"button_index":15,"pressure":0.0,"pressed":false,"script":null)
+, Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":68,"physical_scancode":0,"unicode":0,"echo":false,"script":null)
+ ]
+}
+ui_up={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":16777232,"physical_scancode":0,"unicode":0,"echo":false,"script":null)
+, Object(InputEventJoypadButton,"resource_local_to_scene":false,"resource_name":"","device":0,"button_index":12,"pressure":0.0,"pressed":false,"script":null)
+, Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":87,"physical_scancode":0,"unicode":0,"echo":false,"script":null)
+ ]
+}
+ui_down={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":16777234,"physical_scancode":0,"unicode":0,"echo":false,"script":null)
+, Object(InputEventJoypadButton,"resource_local_to_scene":false,"resource_name":"","device":0,"button_index":13,"pressure":0.0,"pressed":false,"script":null)
+, Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":83,"physical_scancode":0,"unicode":0,"echo":false,"script":null)
+ ]
+}
+toggle_colored_patches={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":16777245,"physical_scancode":0,"unicode":0,"echo":false,"script":null)
+ ]
+}
+speedup={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":16777237,"physical_scancode":0,"unicode":0,"echo":false,"script":null)
+ ]
+}
+toggle_wireframe={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":16777244,"physical_scancode":0,"unicode":0,"echo":false,"script":null)
+ ]
+}
+toggle_camera_mode={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":16777238,"physical_scancode":0,"unicode":0,"echo":false,"script":null)
+ ]
+}
+dopredu={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":87,"physical_scancode":0,"unicode":0,"echo":false,"script":null)
+, Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":16777232,"physical_scancode":0,"unicode":0,"echo":false,"script":null)
+ ]
+}
+dozadu={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":83,"physical_scancode":0,"unicode":0,"echo":false,"script":null)
+, Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":16777234,"physical_scancode":0,"unicode":0,"echo":false,"script":null)
+ ]
+}
+boost={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":16777237,"physical_scancode":0,"unicode":0,"echo":false,"script":null)
+ ]
+}
+dolava={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":65,"physical_scancode":0,"unicode":0,"echo":false,"script":null)
+, Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":16777231,"physical_scancode":0,"unicode":0,"echo":false,"script":null)
+ ]
+}
+doprava={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":16777233,"physical_scancode":0,"unicode":0,"echo":false,"script":null)
+, Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":68,"physical_scancode":0,"unicode":0,"echo":false,"script":null)
+ ]
+}
+hyperspeed={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":32,"physical_scancode":0,"unicode":0,"echo":false,"script":null)
+ ]
+}
+Spotlight={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":72,"physical_scancode":0,"unicode":0,"echo":false,"script":null)
+ ]
+}
+pause={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":16777217,"physical_scancode":0,"unicode":0,"echo":false,"script":null)
+ ]
+}
+padak={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":69,"physical_scancode":0,"unicode":0,"echo":false,"script":null)
+ ]
+}
+
+[mono]
+
+project/assembly_name="Planet Generator"
+
+[physics]
+
+3d/active_soft_world=false
+
+[rendering]
+
+threads/thread_model=2
+quality/shadows/filter_mode=2
+quality/filters/anisotropic_filter_level=16
+limits/buffers/blend_shape_max_buffer_size_kb=8192
+limits/buffers/immediate_buffer_size_kb=4096
+quality/filters/msaa=2
+environment/default_environment="res://default_env.tres"

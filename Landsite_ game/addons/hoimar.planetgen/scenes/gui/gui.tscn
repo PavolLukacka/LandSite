@@ -1,0 +1,17 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://addons/hoimar.planetgen/scripts/gui/gui.gd" type="Script" id=1]
+
+[node name="Gui" type="CanvasLayer"]
+script = ExtResource( 1 )
+
+[node name="LabelStatus" type="Label" parent="."]
+margin_left = 10.0
+margin_top = 10.0
+custom_constants/line_spacing = 5
+text = "some
+status
+lines"
+__meta__ = {
+"_edit_use_anchors_": false
+}
